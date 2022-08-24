@@ -1,5 +1,6 @@
 ﻿using System;
-using SerializeDLL;
+using CommonLibrary;
+using SerializeLibrary;
 
 namespace Client
 {
@@ -10,16 +11,14 @@ namespace Client
             string port = Console.ReadLine();
 
             Client client = new Client("http://127.0.0.1", port);
-            //Client client = new Client("http://menote.ru/study/", port);
 
             while (!client.Ping()) { }
 
-            Input input = new Input();
-            Data data = new Data();
-            Output output = new Output();
+            var input = new Input();
+            var data = new DataProcessing();
 
             while ((input = client.GetInputData()) == null) { }
-            output = data.Result(input);
+            var output = data.Result(input);
 
             while (!client.WriteAnswer(output)) { }
         }

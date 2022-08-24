@@ -1,55 +1,54 @@
 ﻿using System;
-using SerializeDLL;
+using CommonLibrary;
+using SerializeLibrary;
 
 namespace Serialize
 {
-    class Program
-    {       
-        static void Main(string[] args)
+  class Program
+  {
+		#region Поля и свойства
+
+    /// <summary>
+    /// Обработка данных.
+    /// </summary>
+    private static DataProcessing dataProcessing = new DataProcessing();
+
+    #endregion
+
+    static void Main(string[] args)
+    {
+      var line = Console.ReadLine();
+
+      switch (line)
+      {
+        case "Xml":
         {
-            string str = Console.ReadLine();
+          line = Console.ReadLine();
+          var inputXmlSerialize = new XmlSerialize<Input>();
+          var outputXmlSerialize = new XmlSerialize<Output>();
+          var input = inputXmlSerialize.DeSerialize(line);
+          var output = dataProcessing.Result(input);
 
-            switch (str)
-            {
-                case "Xml":
-                {
-                    str = Console.ReadLine();
-                    XmlSerialize XS = new XmlSerialize();
-
-                    Input input = new Input();
-                    Output output = new Output();
-                    input = XS.DeSerialize(str);
-
-                    Data data = new Data();
-                    output = data.Result(input);
-
-                    str = XS.Serialize(output);
-
-                    Console.WriteLine(str);
-                }
-                break;
-                case "Json":
-                {
-                    str = Console.ReadLine();
-                    JsonSerialize JS = new JsonSerialize();
-
-                    Input input = new Input();
-                    Output output = new Output();
-                    input = JS.DeSerialize(str);
-
-                    Data data = new Data();
-                    output = data.Result(input);
-
-                    str = JS.Serialize(output);
-
-                    Console.WriteLine(str);
-                }
-                break;
-                default:
-                    new Exception("What can I do?");
-                    break;
-            }
-
+          line = outputXmlSerialize.Serialize(output);
+          Console.WriteLine(line);
         }
+        break;
+        case "Json":
+        {
+          line = Console.ReadLine();
+          var inputJsonSerialize = new JsonSerialize<Input>();
+          var outputJsonSerialize = new JsonSerialize<Output>();
+          var input = inputJsonSerialize.DeSerialize(line);
+          var output = dataProcessing.Result(input);
+
+          line = outputJsonSerialize.Serialize(output);
+          Console.WriteLine(line);
+        }
+        break;
+        default:
+          throw new Exception("What can I do?");
+      }
+
     }
+  }
 }

@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using System.Net;
 using System.Text;
-using SerializeDLL;
+using CommonLibrary;
+using SerializeLibrary;
 
 namespace Server
 {
