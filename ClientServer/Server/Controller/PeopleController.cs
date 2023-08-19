@@ -4,7 +4,7 @@ using EmbedIO.WebApi;
 
 namespace Server
 {
-	public class СalculatorController : WebApiController
+	public class PeopleController : WebApiController
 	{
 		#region Константы
 

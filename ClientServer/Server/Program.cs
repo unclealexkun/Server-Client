@@ -5,7 +5,7 @@ using Swan.Logging;
 
 namespace Server
 {
-	public class Program
+	public static class Program
 	{
 		#region Константы
 
@@ -40,8 +40,10 @@ namespace Server
 							.WithUrlPrefix(url)
 							.WithMode(HttpListenerMode.EmbedIO))
 					.WithLocalSessionManager()
-					.WithWebApi("/api", m => m
-							.WithController<СalculatorController>())
+					.WithWebApi("/api/people", m => m
+							.WithController<PeopleController>())
+					.WithWebApi("/api/task", m => m
+							.WithController<TaskController>())
 					.WithModule(new ActionModule("/", HttpVerbs.Any, ctx => ctx.SendDataAsync(new { Message = "Error" })));
 
 				// Слушаем изменение состояния.
