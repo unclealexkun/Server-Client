@@ -37,4 +37,8 @@
     <Folder Include="Database\DB\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SharedModel\SharedModel.csproj" />
+  </ItemGroup>
+
 </Project>
