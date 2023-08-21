@@ -17,7 +17,7 @@ namespace Server
 
 		#endregion
 
-		[Route(HttpVerbs.Get, "/taskbyid")]
+		[Route(HttpVerbs.Get, "/taskbyid/{id}")]
 		public Task? GetTaskById(int id)
 		{
 			Logger.Info($"Get task by {id}.");
@@ -38,19 +38,19 @@ namespace Server
 		}
 
 		[Route(HttpVerbs.Post, "/addtask")]
-		public Task? SaveTask(Task task)
+		public Task? SaveTask([JsonData] Task task)
 		{
 			Logger.Info("Save task.");
 			using (var db = new TaskTrackerContext())
 			{
-				var result = db.Tasks.Add(task);
+				var result = db.Add(task);
 				db.SaveChanges();
 				return result?.Entity;
 			}
 		}
 
-		[Route(HttpVerbs.Post, "/updatetask")]
-		public Task? UpdateTask(Task task)
+		[Route(HttpVerbs.Put, "/updatetask")]
+		public Task? UpdateTask([JsonData] Task task)
 		{
 			Logger.Info("Update task.");
 			using (var db = new TaskTrackerContext())
@@ -74,7 +74,7 @@ namespace Server
 			}
 		}
 
-		[Route(HttpVerbs.Post, "/deletetaskbyid")]
+		[Route(HttpVerbs.Post, "/deletetaskbyid/{id}")]
 		public bool DeleteTask(int id)
 		{
 			Logger.Info("Update task.");
