@@ -37,9 +37,13 @@ namespace Server.Database
 
 		public TaskTrackerContext()
 		{
-			var folder = Environment.SpecialFolder.LocalApplicationData;
-			var path = Environment.GetFolderPath(folder);
-			DbPath = Path.Join(path, "\\Database\\", "\\DB\\", "Database.db");
+			var folder = Environment.CurrentDirectory;
+			var path = Path.Join(folder, "\\Database\\", "\\DB\\");
+
+			if (!Directory.Exists(path))
+				Directory.CreateDirectory(path);
+
+			DbPath = Path.Join(path, "Database.db");
 		}
 
 		#endregion
