@@ -38,7 +38,7 @@ namespace Server
 			{
 				var server = new WebServer(o => o
 							.WithUrlPrefix(url)
-							.WithMode(HttpListenerMode.EmbedIO))
+							.WithMode(HttpListenerMode.Microsoft))
 					.WithLocalSessionManager()
 					.WithWebApi("/api/people", m => m
 							.WithController<PeopleController>())

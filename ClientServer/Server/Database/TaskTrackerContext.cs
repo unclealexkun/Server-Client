@@ -25,7 +25,7 @@ namespace Server.Database
 
 		/// <summary>
 		/// Настройка Entity Framework для создания файла базы данных Sqlite
-		/// в специальной «локальной» папке для любой платформы.
+		/// в специальной папке для любой платформы.
 		/// </summary>
 		/// <param name="options">Параметры настройки.</param>
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
