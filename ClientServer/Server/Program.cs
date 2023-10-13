@@ -44,6 +44,8 @@ namespace Server
 							.WithController<PeopleController>())
 					.WithWebApi("/api/task", m => m
 							.WithController<TaskController>())
+					.WithWebApi("/api/calc", m => m
+							.WithController<CalculatorController>())
 					.WithModule(new ActionModule("/", HttpVerbs.Any, ctx => ctx.SendDataAsync(new { Message = "Error" })));
 
 				// Слушаем изменение состояния.
